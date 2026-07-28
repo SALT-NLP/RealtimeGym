@@ -57,6 +57,18 @@ class BaseAgent:
         # New API: store current observation
         self.current_observation = None
 
+        # Gap 3 — planning-thread refresh. Defaults below keep vanilla behavior
+        # (the planning generation runs to completion over its start state).
+        # Configure via configure_refresh(); used by agents with a planning thread.
+        self.refresh_plan = False
+        self.refresh_every = 0  # re-ground after this many env steps (0 = off)
+        self.refresh_on_change = False  # re-ground when observation changes enough
+        self.refresh_change_threshold = 0.3  # min state-string distance to trigger
+        self.refresh_carryover = False  # restart-with-context vs. restart-from-scratch
+        self.plan_anchor_state_string = None  # state the live plan was grounded on
+        self.plan_so_far = ""  # reasoning revealed for the current generation
+        self.refresh_count = 0  # number of refreshes this episode
+
     def _resolve_env_var(
         self, value: Union[str, int, float, bool, None]
     ) -> Union[str, int, float, bool, None]:
@@ -129,6 +141,71 @@ class BaseAgent:
             observation (dict): Observation containing state information
         """
         self.current_observation = observation
+
+    def configure_refresh(
+        self,
+        refresh_plan: bool = False,
+        refresh_every: int = 0,
+        refresh_on_change: bool = False,
+        refresh_change_threshold: float = 0.3,
+        refresh_carryover: bool = False,
+    ) -> None:
+        """Configure planning-thread refresh (Gap 3).
+
+        When enabled, an in-flight planning generation is abandoned and
+        re-grounded on the current observation once it becomes stale, instead
+        of always running to completion over the state it started on. Disabled
+        by default so behavior is byte-identical to vanilla AgileThinker.
+
+        Args:
+            refresh_plan: Master switch.
+            refresh_every: Re-ground after this many env steps since the live
+                plan started (0 = disabled).
+            refresh_on_change: Re-ground when the observation has changed by at
+                least ``refresh_change_threshold`` vs. the state the plan was
+                grounded on.
+            refresh_change_threshold: State-string distance in [0, 1].
+            refresh_carryover: If True, seed the new planning prompt with the
+                reasoning revealed so far (restart-with-context); otherwise
+                restart from scratch.
+        """
+        self.refresh_plan = refresh_plan
+        self.refresh_every = refresh_every
+        self.refresh_on_change = refresh_on_change
+        self.refresh_change_threshold = refresh_change_threshold
+        self.refresh_carryover = refresh_carryover
+
+    @staticmethod
+    def _state_distance(prev_state_string: Optional[str], cur_state_string: str) -> float:
+        """Game-agnostic distance in [0, 1] between two textual states.
+
+        1 - difflib similarity ratio; 1.0 if there is no prior anchor.
+        Subclasses/envs can override with a domain-specific metric.
+        """
+        import difflib
+
+        if not prev_state_string:
+            return 1.0
+        return 1.0 - difflib.SequenceMatcher(
+            None, prev_state_string, cur_state_string
+        ).ratio()
+
+    def should_refresh_plan(self, observation: dict[str, Any]) -> bool:
+        """Decide whether to re-ground the in-flight planning generation."""
+        # Only meaningful while a generation is in flight; a finished plan
+        # (gen_text == "") triggers a normal fresh start anyway.
+        if not self.refresh_plan or self.gen_text == "":
+            return False
+        age = observation["game_turn"] - self.gen_turn
+        if self.refresh_every and age >= self.refresh_every:
+            return True
+        if self.refresh_on_change:
+            dist = self._state_distance(
+                self.plan_anchor_state_string, observation["state_string"]
+            )
+            if dist >= self.refresh_change_threshold:
+                return True
+        return False
 
     def think(self, timeout: Optional[float] = None) -> NoReturn:
         """

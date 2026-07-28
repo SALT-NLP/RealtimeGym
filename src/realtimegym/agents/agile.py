@@ -40,17 +40,37 @@ class AgileThinker(BaseAgent):
             observation["state"], mode="agile"
         )
         prompt = ""
-        if self.gen_text == "":  # check whether the last generation is finished
-            messages = [{"role": "user", "content": prompt_gen["planning"]}]
-            prompt = messages[-1]["content"]
+        # Gap 3: start a fresh planning generation either when the previous one
+        # has finished (gen_text == "") or when the live plan has gone stale and
+        # should be re-grounded on the current observation.
+        refresh = self.should_refresh_plan(observation)
+        prior_reasoning = self.plan_so_far
+        if self.gen_text == "" or refresh:
+            plan_prompt = prompt_gen["planning"]
+            if refresh and self.refresh_carryover and prior_reasoning:
+                plan_prompt += (
+                    "\n\n**Your earlier reasoning (computed on a now-outdated state; "
+                    "reuse what is still valid and revise the rest):**\n"
+                    + prior_reasoning
+                )
+            messages = [{"role": "user", "content": plan_prompt}]
+            prompt = plan_prompt
+            self.plan_anchor_state_string = self.state_string
+            if refresh:
+                self.refresh_count += 1
         else:
             messages = []
         text, token_num, turn = self.planning_inference(messages, budget, game_turn)
+        # Track reasoning revealed for the current generation (cumulative prefix
+        # in token mode); carried into the new prompt on a refresh when enabled.
+        self.plan_so_far = text
         self.plan = f"""**Guidance from a Previous Thinking Model:** Turn \\( t_1 = {turn} \\)\n{text}"""
         if self.log_thinking:
             self.logs["plan"].append(self.plan)
             self.logs["model2_prompt"].append(prompt)
             self.logs["model2_response"].append(text)
+            self.logs["refreshed"].append(int(refresh))
+            self.logs["plan_age"].append(game_turn - turn)
         self.logs["model2_token_num"].append(token_num)
 
         prompt = prompt_gen["reactive"]

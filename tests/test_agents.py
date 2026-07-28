@@ -231,3 +231,59 @@ class TestRealAgents:
         params = list(sig.parameters.keys())
 
         assert "self" in params
+
+
+class TestPlanRefresh:
+    """Gap 3: planning-thread refresh decision logic (no LLM/API needed)."""
+
+    def _agent(self) -> Any:  # noqa: ANN401
+        from types import SimpleNamespace
+
+        fake_prompts = SimpleNamespace(DEFAULT_ACTION="S", ALL_ACTIONS="UDLRS")
+        return realtimegym.BaseAgent(fake_prompts, file="/tmp/_t.csv", time_unit="token")
+
+    def test_disabled_by_default(self) -> None:
+        """With refresh off, never refresh — preserves vanilla behavior."""
+        agent = self._agent()
+        agent.gen_text = "some in-flight plan"
+        agent.gen_turn = 0
+        assert agent.refresh_plan is False
+        assert agent.should_refresh_plan({"game_turn": 99, "state_string": "x"}) is False
+
+    def test_no_refresh_when_idle(self) -> None:
+        """Never refresh when no generation is in flight (gen_text empty)."""
+        agent = self._agent()
+        agent.configure_refresh(refresh_plan=True, refresh_every=1)
+        agent.gen_text = ""
+        assert agent.should_refresh_plan({"game_turn": 5, "state_string": "x"}) is False
+
+    def test_periodic_refresh(self) -> None:
+        """Refresh once the live plan reaches the staleness age."""
+        agent = self._agent()
+        agent.configure_refresh(refresh_plan=True, refresh_every=3)
+        agent.gen_text = "in-flight"
+        agent.gen_turn = 10
+        assert agent.should_refresh_plan({"game_turn": 12, "state_string": "x"}) is False
+        assert agent.should_refresh_plan({"game_turn": 13, "state_string": "x"}) is True
+
+    def test_change_triggered_refresh(self) -> None:
+        """Refresh when the observation diverges enough from the anchor state."""
+        agent = self._agent()
+        agent.configure_refresh(
+            refresh_plan=True, refresh_on_change=True, refresh_change_threshold=0.3
+        )
+        agent.gen_text = "in-flight"
+        agent.gen_turn = 0
+        agent.plan_anchor_state_string = "AAAAAAAAAA"
+        assert agent.should_refresh_plan(
+            {"game_turn": 1, "state_string": "AAAAAAAAAA"}
+        ) is False  # identical -> distance 0
+        assert agent.should_refresh_plan(
+            {"game_turn": 1, "state_string": "BBBBBBBBBB"}
+        ) is True  # fully different -> distance 1
+
+    def test_state_distance_bounds(self) -> None:
+        agent = self._agent()
+        assert agent._state_distance(None, "x") == 1.0
+        assert agent._state_distance("abc", "abc") == 0.0
+        assert 0.0 <= agent._state_distance("abc", "abd") <= 1.0
