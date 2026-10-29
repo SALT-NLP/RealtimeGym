@@ -1,0 +1,33 @@
+planning_model_config: configs/chtc-qwen3-8b-planning.yaml
+reactive_model_config: configs/chtc-qwen3-8b-reactive.yaml
+prompt_config: configs/example-prompts.yaml
+game: snake
+time_unit: token
+time_pressure: 4096
+cognitive_load: M
+mode: reactive
+internal_budget: 4096
+log_dir: logs/snake_reactive_M
+seed_num: 8
+repeat_times: 1
+save_trajectory_gifs: False
+settings: ['snake_M_4096_reactive_4096']
+instance_num: None
+checkpoint: None
+
+seed: 5002 reward: -1 total_time: 34.04634141921997 
+-----------------------------
+seed: 5006 reward: -1 total_time: 43.2083854675293 
+-----------------------------
+seed: 5007 reward: -1 total_time: 49.53615665435791 
+-----------------------------
+seed: 5005 reward: 0 total_time: 56.12123417854309 
+-----------------------------
+seed: 5001 reward: -1 total_time: 57.73806405067444 
+-----------------------------
+seed: 5000 reward: 0 total_time: 76.98708057403564 
+-----------------------------
+seed: 5004 reward: 2 total_time: 256.1508731842041 
+-----------------------------
+seed: 5003 reward: 1 total_time: 277.177636384964 
+-----------------------------

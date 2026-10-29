@@ -9,6 +9,8 @@ from typing import Any, NoReturn, Optional, Union
 import pandas as pd
 import yaml
 from openai import OpenAI
+
+from ..budget import budget_line  # noqa: F401  (re-exported for agents)
 from transformers import AutoTokenizer
 
 # Load environment variables from .env file if it exists

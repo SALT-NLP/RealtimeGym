@@ -1,0 +1,81 @@
+planning_model_config: configs/chtc-qwen3-8b-planning.yaml
+reactive_model_config: configs/chtc-qwen3-8b-reactive.yaml
+prompt_config: configs/example-prompts.yaml
+game: snake
+time_unit: token
+time_pressure: 4096
+cognitive_load: M
+mode: reactive
+internal_budget: 4096
+log_dir: logs/llama3.1_snake_reactive_M
+seed_num: 8
+repeat_times: 4
+save_trajectory_gifs: False
+settings: ['snake_M_4096_reactive_4096']
+instance_num: None
+checkpoint: None
+
+seed: 5004 reward: -1 total_time: 5.6552228927612305 
+-----------------------------
+seed: 5004 reward: -1 total_time: 10.319775342941284 
+-----------------------------
+seed: 5004 reward: -1 total_time: 10.897104263305664 
+-----------------------------
+seed: 5004 reward: -1 total_time: 11.441686153411865 
+-----------------------------
+seed: 5003 reward: 0 total_time: 18.1412935256958 
+-----------------------------
+seed: 5001 reward: -1 total_time: 21.419456005096436 
+-----------------------------
+seed: 5001 reward: -1 total_time: 21.371707677841187 
+-----------------------------
+seed: 5000 reward: -1 total_time: 22.207196474075317 
+-----------------------------
+seed: 5006 reward: -1 total_time: 22.579224109649658 
+-----------------------------
+seed: 5002 reward: -1 total_time: 24.259943962097168 
+-----------------------------
+seed: 5002 reward: -1 total_time: 24.65140724182129 
+-----------------------------
+seed: 5006 reward: -1 total_time: 25.40191149711609 
+-----------------------------
+seed: 5005 reward: 0 total_time: 25.649327039718628 
+-----------------------------
+seed: 5003 reward: -1 total_time: 26.583770275115967 
+-----------------------------
+seed: 5000 reward: -1 total_time: 28.208209991455078 
+-----------------------------
+seed: 5007 reward: -1 total_time: 28.67955183982849 
+-----------------------------
+seed: 5003 reward: 0 total_time: 28.881656646728516 
+-----------------------------
+seed: 5007 reward: -1 total_time: 30.463717699050903 
+-----------------------------
+seed: 5002 reward: -1 total_time: 31.35244870185852 
+-----------------------------
+seed: 5007 reward: -1 total_time: 31.374590396881104 
+-----------------------------
+seed: 5006 reward: -1 total_time: 32.217620611190796 
+-----------------------------
+seed: 5003 reward: 0 total_time: 33.495633602142334 
+-----------------------------
+seed: 5005 reward: 0 total_time: 33.9270236492157 
+-----------------------------
+seed: 5005 reward: 0 total_time: 36.6823525428772 
+-----------------------------
+seed: 5001 reward: -1 total_time: 36.99757766723633 
+-----------------------------
+seed: 5005 reward: 0 total_time: 37.58949685096741 
+-----------------------------
+seed: 5007 reward: -1 total_time: 38.05186128616333 
+-----------------------------
+seed: 5000 reward: 0 total_time: 42.60265564918518 
+-----------------------------
+seed: 5001 reward: 0 total_time: 45.680856466293335 
+-----------------------------
+seed: 5002 reward: -1 total_time: 82.05379319190979 
+-----------------------------
+seed: 5006 reward: -1 total_time: 94.99596810340881 
+-----------------------------
+seed: 5000 reward: 0 total_time: 101.54047799110413 
+-----------------------------

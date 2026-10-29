@@ -1,0 +1,81 @@
+planning_model_config: configs/chtc-qwen3-8b-planning.yaml
+reactive_model_config: configs/chtc-qwen3-8b-reactive.yaml
+prompt_config: configs/example-prompts.yaml
+game: snake
+time_unit: token
+time_pressure: 4096
+cognitive_load: H
+mode: reactive
+internal_budget: 4096
+log_dir: logs/snake_reactive_H
+seed_num: 8
+repeat_times: 4
+save_trajectory_gifs: False
+settings: ['snake_H_4096_reactive_4096']
+instance_num: None
+checkpoint: None
+
+seed: 8004 reward: -1 total_time: 14.547072887420654 
+-----------------------------
+seed: 8006 reward: -1 total_time: 15.599248886108398 
+-----------------------------
+seed: 8006 reward: -1 total_time: 15.824283123016357 
+-----------------------------
+seed: 8004 reward: -1 total_time: 16.927138566970825 
+-----------------------------
+seed: 8004 reward: -1 total_time: 17.190656423568726 
+-----------------------------
+seed: 8000 reward: -1 total_time: 17.513067960739136 
+-----------------------------
+seed: 8000 reward: -1 total_time: 31.304224252700806 
+-----------------------------
+seed: 8002 reward: 0 total_time: 31.913328170776367 
+-----------------------------
+seed: 8002 reward: 0 total_time: 33.50610661506653 
+-----------------------------
+seed: 8003 reward: -1 total_time: 34.46309280395508 
+-----------------------------
+seed: 8000 reward: -1 total_time: 37.234333992004395 
+-----------------------------
+seed: 8001 reward: -1 total_time: 38.423115491867065 
+-----------------------------
+seed: 8006 reward: -1 total_time: 38.642882108688354 
+-----------------------------
+seed: 8001 reward: 0 total_time: 42.67453718185425 
+-----------------------------
+seed: 8007 reward: 1 total_time: 42.8409686088562 
+-----------------------------
+seed: 8001 reward: 0 total_time: 44.130112648010254 
+-----------------------------
+seed: 8007 reward: -1 total_time: 44.54548740386963 
+-----------------------------
+seed: 8006 reward: -1 total_time: 46.97850704193115 
+-----------------------------
+seed: 8005 reward: -1 total_time: 47.78923225402832 
+-----------------------------
+seed: 8003 reward: -1 total_time: 48.12238621711731 
+-----------------------------
+seed: 8003 reward: -1 total_time: 49.20480442047119 
+-----------------------------
+seed: 8003 reward: -1 total_time: 49.40174436569214 
+-----------------------------
+seed: 8005 reward: -1 total_time: 51.02472710609436 
+-----------------------------
+seed: 8005 reward: -1 total_time: 54.55998706817627 
+-----------------------------
+seed: 8002 reward: 1 total_time: 56.04804801940918 
+-----------------------------
+seed: 8007 reward: -1 total_time: 58.10100340843201 
+-----------------------------
+seed: 8002 reward: 1 total_time: 62.48522210121155 
+-----------------------------
+seed: 8005 reward: 0 total_time: 67.91748356819153 
+-----------------------------
+seed: 8007 reward: -1 total_time: 70.33918762207031 
+-----------------------------
+seed: 8004 reward: 0 total_time: 71.43148899078369 
+-----------------------------
+seed: 8000 reward: -1 total_time: 79.21590900421143 
+-----------------------------
+seed: 8001 reward: 2 total_time: 106.56940388679504 
+-----------------------------

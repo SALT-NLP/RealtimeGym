@@ -1,0 +1,81 @@
+planning_model_config: configs/chtc-qwen3-8b-planning.yaml
+reactive_model_config: configs/chtc-qwen3-8b-reactive.yaml
+prompt_config: configs/example-prompts.yaml
+game: snake
+time_unit: token
+time_pressure: 4096
+cognitive_load: E
+mode: planning
+internal_budget: 0
+log_dir: logs/llama3.1_snake_planning_E
+seed_num: 8
+repeat_times: 4
+save_trajectory_gifs: False
+settings: ['snake_E_4096_planning_0']
+instance_num: None
+checkpoint: None
+
+seed: 1001 reward: -1 total_time: 87.9917380809784 
+-----------------------------
+seed: 1001 reward: -1 total_time: 93.88856387138367 
+-----------------------------
+seed: 1005 reward: -1 total_time: 95.38822841644287 
+-----------------------------
+seed: 1000 reward: 0 total_time: 98.74048209190369 
+-----------------------------
+seed: 1005 reward: -1 total_time: 101.95174622535706 
+-----------------------------
+seed: 1001 reward: -1 total_time: 102.84784030914307 
+-----------------------------
+seed: 1003 reward: -1 total_time: 103.9055643081665 
+-----------------------------
+seed: 1002 reward: -1 total_time: 110.2241542339325 
+-----------------------------
+seed: 1004 reward: 0 total_time: 114.32166266441345 
+-----------------------------
+seed: 1005 reward: -1 total_time: 116.47557663917542 
+-----------------------------
+seed: 1007 reward: -1 total_time: 118.74425745010376 
+-----------------------------
+seed: 1004 reward: 0 total_time: 128.39128947257996 
+-----------------------------
+seed: 1001 reward: -1 total_time: 137.47350406646729 
+-----------------------------
+seed: 1007 reward: -1 total_time: 147.5938048362732 
+-----------------------------
+seed: 1004 reward: 0 total_time: 157.03592896461487 
+-----------------------------
+seed: 1003 reward: -1 total_time: 170.1921877861023 
+-----------------------------
+seed: 1002 reward: -1 total_time: 188.55526328086853 
+-----------------------------
+seed: 1002 reward: -1 total_time: 191.43357753753662 
+-----------------------------
+seed: 1004 reward: 0 total_time: 194.23665022850037 
+-----------------------------
+seed: 1007 reward: -1 total_time: 202.71511483192444 
+-----------------------------
+seed: 1000 reward: 0 total_time: 202.7162823677063 
+-----------------------------
+seed: 1006 reward: -1 total_time: 202.72795057296753 
+-----------------------------
+seed: 1005 reward: -1 total_time: 202.71284103393555 
+-----------------------------
+seed: 1002 reward: -1 total_time: 202.71980714797974 
+-----------------------------
+seed: 1006 reward: -1 total_time: 202.72753143310547 
+-----------------------------
+seed: 1000 reward: 0 total_time: 202.6980743408203 
+-----------------------------
+seed: 1003 reward: -1 total_time: 215.63938570022583 
+-----------------------------
+seed: 1006 reward: 0 total_time: 219.8910527229309 
+-----------------------------
+seed: 1007 reward: -1 total_time: 226.7227282524109 
+-----------------------------
+seed: 1000 reward: 2 total_time: 283.280544757843 
+-----------------------------
+seed: 1006 reward: 2 total_time: 325.0727858543396 
+-----------------------------
+seed: 1003 reward: 2 total_time: 388.745432138443 
+-----------------------------

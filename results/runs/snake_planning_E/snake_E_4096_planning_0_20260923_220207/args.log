@@ -1,0 +1,81 @@
+planning_model_config: configs/chtc-qwen3-8b-planning.yaml
+reactive_model_config: configs/chtc-qwen3-8b-reactive.yaml
+prompt_config: configs/example-prompts.yaml
+game: snake
+time_unit: token
+time_pressure: 4096
+cognitive_load: E
+mode: planning
+internal_budget: 0
+log_dir: logs/snake_planning_E
+seed_num: 8
+repeat_times: 4
+save_trajectory_gifs: False
+settings: ['snake_E_4096_planning_0']
+instance_num: None
+checkpoint: None
+
+seed: 1006 reward: -1 total_time: 103.78882074356079 
+-----------------------------
+seed: 1007 reward: -1 total_time: 108.5444712638855 
+-----------------------------
+seed: 1007 reward: -1 total_time: 117.12024188041687 
+-----------------------------
+seed: 1007 reward: -1 total_time: 118.91556000709534 
+-----------------------------
+seed: 1002 reward: -1 total_time: 123.34329915046692 
+-----------------------------
+seed: 1001 reward: -1 total_time: 125.37699055671692 
+-----------------------------
+seed: 1001 reward: -1 total_time: 128.82376503944397 
+-----------------------------
+seed: 1005 reward: -1 total_time: 129.10779404640198 
+-----------------------------
+seed: 1006 reward: -1 total_time: 146.80992555618286 
+-----------------------------
+seed: 1004 reward: 0 total_time: 151.12007904052734 
+-----------------------------
+seed: 1003 reward: -1 total_time: 163.7558856010437 
+-----------------------------
+seed: 1005 reward: -1 total_time: 166.18688416481018 
+-----------------------------
+seed: 1004 reward: 0 total_time: 176.87362670898438 
+-----------------------------
+seed: 1007 reward: -1 total_time: 207.33206486701965 
+-----------------------------
+seed: 1005 reward: -1 total_time: 209.94169187545776 
+-----------------------------
+seed: 1000 reward: 1 total_time: 226.7457253932953 
+-----------------------------
+seed: 1001 reward: 0 total_time: 309.50081396102905 
+-----------------------------
+seed: 1000 reward: 2 total_time: 314.59965443611145 
+-----------------------------
+seed: 1000 reward: 1 total_time: 327.1282682418823 
+-----------------------------
+seed: 1001 reward: 0 total_time: 328.17501068115234 
+-----------------------------
+seed: 1002 reward: -1 total_time: 334.38214015960693 
+-----------------------------
+seed: 1004 reward: 0 total_time: 356.3192467689514 
+-----------------------------
+seed: 1003 reward: 1 total_time: 444.83300018310547 
+-----------------------------
+seed: 1006 reward: 2 total_time: 444.8449504375458 
+-----------------------------
+seed: 1000 reward: 0 total_time: 484.208119392395 
+-----------------------------
+seed: 1003 reward: 1 total_time: 521.1235294342041 
+-----------------------------
+seed: 1002 reward: 1 total_time: 588.3739216327667 
+-----------------------------
+seed: 1006 reward: 3 total_time: 610.658910036087 
+-----------------------------
+seed: 1004 reward: 3 total_time: 632.22274518013 
+-----------------------------
+seed: 1002 reward: 2 total_time: 639.7754995822906 
+-----------------------------
+seed: 1005 reward: 3 total_time: 708.2938632965088 
+-----------------------------
+seed: 1003 reward: 5 total_time: 756.8503754138947 
+-----------------------------

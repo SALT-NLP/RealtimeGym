@@ -1,0 +1,3 @@
+model_tag: Qwen3-8B
+planning_model: Qwen/Qwen3-8B
+reactive_model: Qwen/Qwen3-8B

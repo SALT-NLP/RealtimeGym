@@ -1,0 +1,33 @@
+planning_model_config: configs/chtc-qwen3-8b-planning.yaml
+reactive_model_config: configs/chtc-qwen3-8b-reactive.yaml
+prompt_config: configs/example-prompts.yaml
+game: freeway
+time_unit: token
+time_pressure: 16384
+cognitive_load: M
+mode: planning
+internal_budget: 0
+log_dir: logs/planning_M_16384
+seed_num: 8
+repeat_times: 1
+save_trajectory_gifs: False
+settings: ['freeway_M_16384_planning_0']
+instance_num: None
+checkpoint: None
+
+seed: 1069 reward: 84 total_time: 4859.136679172516 
+-----------------------------
+seed: 1338 reward: 79 total_time: 6307.065315961838 
+-----------------------------
+seed: 1093 reward: 62 total_time: 9853.18022108078 
+-----------------------------
+seed: 1536 reward: 0 total_time: 27077.857130527496 
+-----------------------------
+seed: 1863 reward: 14 total_time: 27089.74334836006 
+-----------------------------
+seed: 1858 reward: 0 total_time: 28284.930035591125 
+-----------------------------
+seed: 2496 reward: 0 total_time: 30887.260073661804 
+-----------------------------
+seed: 1933 reward: 0 total_time: 31334.76292204857 
+-----------------------------

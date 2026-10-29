@@ -1,0 +1,33 @@
+planning_model_config: configs/chtc-qwen3-8b-planning.yaml
+reactive_model_config: configs/chtc-qwen3-8b-reactive.yaml
+prompt_config: configs/example-prompts.yaml
+game: freeway
+time_unit: token
+time_pressure: 4096
+cognitive_load: E
+mode: agile
+internal_budget: 2048
+log_dir: logs/agile_E
+seed_num: 8
+repeat_times: 1
+save_trajectory_gifs: False
+settings: ['freeway_E_4096_agile_2048']
+instance_num: None
+checkpoint: None
+
+seed: 1001 reward: 89 total_time: 453.06861782073975 
+-----------------------------
+seed: 1018 reward: 83 total_time: 777.9745564460754 
+-----------------------------
+seed: 1000 reward: 79 total_time: 852.2338271141052 
+-----------------------------
+seed: 1013 reward: 81 total_time: 858.116051197052 
+-----------------------------
+seed: 1003 reward: 57 total_time: 2415.357338666916 
+-----------------------------
+seed: 1016 reward: 39 total_time: 2450.2210869789124 
+-----------------------------
+seed: 1014 reward: 0 total_time: 3663.189543247223 
+-----------------------------
+seed: 1002 reward: 1 total_time: 4274.965847730637 
+-----------------------------

@@ -1,7 +1,8 @@
+import os
 import re
 from typing import Any, Optional
 
-from .base import BaseAgent, extract_boxed
+from .base import BaseAgent, budget_line, extract_boxed
 
 
 class ReactiveAgent(BaseAgent):
@@ -26,6 +27,11 @@ class ReactiveAgent(BaseAgent):
         prompt_gen = self.prompts.state_to_description(
             observation["state"], mode="reactive"
         )
+        # The agent is otherwise never told its budget -- internal_budget is
+        # applied as an API max_tokens cap only -- so it cannot allocate its
+        # thinking. Opt in with RTG_ANNOUNCE_BUDGET=1.
+        if os.environ.get("RTG_ANNOUNCE_BUDGET") == "1":
+            prompt_gen += budget_line(self.internal_budget)
         messages = [{"role": "user", "content": prompt_gen}]
         text, token_num = self.reactive_inference(messages, budget)
         self.action = re.sub(

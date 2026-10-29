@@ -28,3 +28,22 @@ src/realtimegym/environments/prompts
 # Personal config files with API keys
 configs/*-personal.yaml
 configs/my-*.yaml
+
+# CHTC result tarballs, extracted logs, generated figures and replays
+rtg_results/
+rtg_figures/
+.DS_Store
+
+# analysis helpers are tracked despite the *.sh rule above
+!analysis/refresh.sh
+
+# committed results: configs + per-seed rewards + figures (no CSVs, no tarballs)
+!results/**/args.log
+!results/**/model.txt
+!results/figures/*.csv
+!results/figures/*.png
+
+# HF dataset cache + generated SFT data
+rtg_hf_cache/
+*.jsonl
+rtg_partial/

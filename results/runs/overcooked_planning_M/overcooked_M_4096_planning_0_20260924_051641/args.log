@@ -1,0 +1,33 @@
+planning_model_config: configs/chtc-qwen3-8b-planning.yaml
+reactive_model_config: configs/chtc-qwen3-8b-reactive.yaml
+prompt_config: configs/example-prompts.yaml
+game: overcooked
+time_unit: token
+time_pressure: 4096
+cognitive_load: M
+mode: planning
+internal_budget: 0
+log_dir: logs/overcooked_planning_M
+seed_num: 8
+repeat_times: 1
+save_trajectory_gifs: False
+settings: ['overcooked_M_4096_planning_0']
+instance_num: None
+checkpoint: None
+
+seed: 5 reward: 0.0 total_time: 3045.3603768348694 
+-----------------------------
+seed: 2 reward: 0.0 total_time: 3052.0732119083405 
+-----------------------------
+seed: 3 reward: 0.0 total_time: 3102.2247021198273 
+-----------------------------
+seed: 1 reward: 0.0 total_time: 3158.9337515830994 
+-----------------------------
+seed: 0 reward: 0.0 total_time: 3163.6612565517426 
+-----------------------------
+seed: 4 reward: 0.0 total_time: 3193.3737552165985 
+-----------------------------
+seed: 6 reward: 0.0 total_time: 3212.083083629608 
+-----------------------------
+seed: 7 reward: 0.0 total_time: 3230.216059923172 
+-----------------------------

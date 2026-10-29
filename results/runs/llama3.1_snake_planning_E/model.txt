@@ -1,0 +1,3 @@
+model_tag: llama3.1-8b
+planning_model: deepseek-ai/DeepSeek-R1-Distill-Llama-8B
+reactive_model: meta-llama/Llama-3.1-8B-Instruct

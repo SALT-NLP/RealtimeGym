@@ -1,0 +1,15 @@
+# Planning thread (model2): thinking ON.
+# Served by the vLLM instance started inside the CHTC job.
+model: Qwen/Qwen3-8B
+url: http://127.0.0.1:8000/v1
+api_key: dummy          # vLLM ignores this unless started with --api-key
+inference_parameters:
+  temperature: 0.6
+  top_p: 0.95
+  max_tokens: 16384
+  extra_body:
+    chat_template_kwargs:
+      enable_thinking: true
+# Must match the served model exactly: used to slice the plan for
+# incremental reveal (gen_token[:gen_accum]).
+tokenizer: Qwen/Qwen3-8B
